@@ -1,0 +1,37 @@
+# ============================================================
+# .gitignore — Superstore SQL Interview Project
+# ============================================================
+
+# ----- Dataset (too large / available on Kaggle) -----
+data/*.csv
+data/*.xlsx
+data/*.xls
+*.csv
+
+# ----- OS Files -----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----- Editor / IDE -----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ----- Python (if used for data prep) -----
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+env/
+
+# ----- Excel temp files -----
+~$*.xlsx
+~$*.xls
+
+# ----- SQLite database files (regenerated from CSV) -----
+*.db
+*.sqlite
+*.sqlite3
