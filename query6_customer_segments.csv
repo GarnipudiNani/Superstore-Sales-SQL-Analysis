@@ -1,0 +1,5 @@
+customer_segment,customer_count,avg_ltv
+1 - One-time buyer,5,219.07
+2 - Occasional (2-3 orders),28,617.26
+3 - Regular (4-7 orders),138,1142.5
+4 - Loyal (8+ orders),622,3410.22
