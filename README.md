@@ -2,9 +2,6 @@
 
 A real-world SQL Data Analytics project built using the Superstore dataset. This project demonstrates key SQL concepts used in Data Analyst roles, including aggregations, filtering, window functions, customer segmentation, KPI reporting, and business insight generation.
 
-
-A real-world SQL Data Analytics project built using the Superstore dataset. This project demonstrates key SQL concepts used in Data Analyst roles, including aggregations, filtering, window functions, customer segmentation, KPI reporting, and business insight generation.
-
 ---
 
 ## 📈 Dashboard Preview
