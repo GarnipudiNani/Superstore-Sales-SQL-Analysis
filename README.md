@@ -1,8 +1,15 @@
-# 📊 Superstore Sales SQL Analysis
+📊 Superstore Sales SQL Analysis
+
+A real-world SQL Data Analytics project built using the Superstore dataset. This project demonstrates key SQL concepts used in Data Analyst roles, including aggregations, filtering, window functions, customer segmentation, KPI reporting, and business insight generation.
+
 
 A real-world SQL Data Analytics project built using the Superstore dataset. This project demonstrates key SQL concepts used in Data Analyst roles, including aggregations, filtering, window functions, customer segmentation, KPI reporting, and business insight generation.
 
 ---
+
+## 📈 Dashboard Preview
+
+![Dashboard Overview](screenshots/dashboard_overview.png)
 
 ## 🚀 Project Overview
 
@@ -24,12 +31,6 @@ The analysis covers:
 * SQL (SQLite / PostgreSQL)
 * Excel
 * Git & GitHub
-
----
-
-## 📈 Dashboard Preview
-
-![Dashboard Overview](screenshots/dashboard_overview.png)
 
 ---
 
@@ -206,6 +207,17 @@ Superstore-Sales-SQL-Analysis
 * Demonstrated end-to-end data analysis workflow.
 
 ---
+
+## 📊 Business Impact
+
+This analysis helps businesses:
+
+- Identify top-performing products
+- Monitor regional sales performance
+- Track customer lifetime value
+- Understand revenue seasonality
+- Improve customer retention strategies
+- Support data-driven decision making
 
 ## 👨‍💻 Author
 
