@@ -1,223 +1,220 @@
-# Superstore Sales SQL Analysis
+# 📊 Superstore Sales SQL Analysis
 
-A real-world SQL portfolio project covering the top patterns asked in 80% of data analyst interviews, built on the Kaggle Superstore dataset (9,994 rows, 2014–2017).
-
----
-
-## Project Summary
-
-| Item | Detail |
-|------|--------|
-| **Dataset** | [Kaggle Superstore Sales](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final) |
-| **Rows** | 9,994 orders across 4 regions, 3 categories, 17 sub-categories |
-| **Tools** | SQLite / PostgreSQL, Excel / Google Sheets |
-| **Skills** | GROUP BY, HAVING, JOIN, Window Functions, CTEs, CASE WHEN |
+A real-world SQL Data Analytics project built using the Superstore dataset. This project demonstrates key SQL concepts used in Data Analyst roles, including aggregations, filtering, window functions, customer segmentation, KPI reporting, and business insight generation.
 
 ---
 
-## Dashboard KPIs (Real Data)
+## 🚀 Project Overview
 
-| Metric | Value |
-|--------|-------|
-| Total Revenue | $2,297,201 |
-| Total Profit | $286,397 |
-| Profit Margin | 12.5% |
-| Total Orders | 5,009 |
-| Total Customers | 793 |
-| Date Range | Jan 2014 – Dec 2017 |
+The goal of this project is to analyze retail sales data and answer common business questions using SQL.
 
----
+The analysis covers:
 
-## Key Findings
-
-1. **Phones & Chairs lead revenue** — each above $328K, but Chairs has only 8.1% margin vs Phones at 13.5%
-2. **Tables are loss-making** — $207K revenue but -8.6% profit margin; a discount problem
-3. **West region dominates** — $725K revenue, 30% more than the South ($392K)
-4. **Top customer Sean Miller** — $25,043 lifetime value across 15 orders
-5. **Loyal customers (8+ orders)** — only 622 customers but $3,410 avg LTV vs $219 for one-time buyers
-6. **Q4 seasonality** — November consistently spikes (+52% MoM in 2017)
+* Revenue Performance
+* Profitability Analysis
+* Customer Lifetime Value (CLV)
+* Regional Sales Trends
+* Product Performance
+* Customer Segmentation
 
 ---
 
-## Repository Structure
+## 🛠️ Tools & Technologies
 
-```
-Superstore-Sales-SQL-Analysis/
+* SQL (SQLite / PostgreSQL)
+* Excel
+* Git & GitHub
+
+---
+
+## 📈 Dashboard Preview
+
+![Dashboard Overview](screenshots/dashboard_overview.png)
+
+---
+
+## 📊 Key Performance Indicators
+
+| KPI             |     Value |
+| --------------- | --------: |
+| Total Revenue   |    $2.29M |
+| Total Profit    |     $286K |
+| Profit Margin   |    12.50% |
+| Total Customers |       793 |
+| Analysis Period | 2014–2017 |
+
+---
+
+## 📌 Business Questions Answered
+
+### 1. Which products generate the highest revenue?
+
+Identify top-performing products based on total sales.
+
+### 2. Which region contributes the most revenue?
+
+Compare sales performance across all regions.
+
+### 3. Who are the most valuable customers?
+
+Calculate Customer Lifetime Value (CLV).
+
+### 4. How does revenue change over time?
+
+Analyze monthly revenue trends and seasonality.
+
+### 5. Which products perform best within each category?
+
+Rank products using SQL window functions.
+
+### 6. How can customers be segmented?
+
+Group customers based on purchasing behavior.
+
+---
+
+## 🔍 SQL Concepts Demonstrated
+
+* SELECT
+* WHERE
+* GROUP BY
+* HAVING
+* ORDER BY
+* Aggregate Functions
+* COUNT DISTINCT
+* CASE WHEN
+* Common Table Expressions (CTEs)
+* Window Functions
+* ROW_NUMBER()
+* PARTITION BY
+* LAG()
+
+---
+
+## 📂 Project Structure
+
+```text
+Superstore-Sales-SQL-Analysis
 │
-├── superstore.sql              # All 6 SQL queries with real outputs in comments
-├── README.md                   # This file
-├── LICENSE                     # MIT
+├── README.md
+├── superstore.sql
 │
-├── data/
-│   └── README_data.md          # How to download the dataset (CSV not committed)
-│
-├── results/
+├── results
 │   ├── query1_top_products.csv
 │   ├── query2_regional_performance.csv
 │   ├── query3_customer_ltv.csv
 │   ├── query4_monthly_trends.csv
 │   ├── query5_top_per_category.csv
-│   ├── query6_customer_segments.csv
-│   └── README_results.md
+│   └── query6_customer_segments.csv
 │
-└── screenshots/
+└── screenshots
     ├── dashboard_overview.png
-    └── query_outputs.png
+    ├── revenue_by_region.png
+    ├── monthly_sales_trend.png
+    ├── top_revenue_products.png
+    └── customer_ltv.png
 ```
 
 ---
 
-## SQL Queries
+## 📊 Dashboard Visualizations
 
-### Query 1 — Top Sub-Categories by Revenue
-**Concept**: `GROUP BY` + `ORDER BY` + Aggregate Functions
-**Pattern**: *"Find top N products / best sellers"*
+### Complete Dashboard Overview
 
-```sql
-SELECT Sub_Category, COUNT(*) AS total_orders,
-       ROUND(SUM(Sales), 2) AS total_revenue,
-       ROUND(SUM(Profit)/SUM(Sales)*100, 2) AS profit_margin_pct
-FROM superstore
-GROUP BY Sub_Category
-ORDER BY total_revenue DESC
-LIMIT 10;
-```
-**Result**: Phones ($330K, 13.5%) | Chairs ($328K, 8.1%) | Tables ($207K, **-8.6%** ⚠️)
+![Dashboard Overview](screenshots/dashboard_overview.png)
 
----
+### Revenue by Region
 
-### Query 2 — Regional Performance
-**Concept**: `GROUP BY` + `HAVING` + `COUNT DISTINCT`
-**Pattern**: *"Show only groups that meet a threshold"*
+![Revenue by Region](screenshots/revenue_by_region.png)
 
-```sql
-SELECT Region, ROUND(SUM(Sales),2) AS total_revenue,
-       COUNT(DISTINCT Customer_ID) AS unique_customers
-FROM superstore
-GROUP BY Region
-HAVING SUM(Sales) > 100000
-ORDER BY total_revenue DESC;
-```
-**Result**: All 4 regions qualify. West leads at $725K, South trails at $392K.
+### Monthly Revenue Trend
 
-> `WHERE` filters rows **before** grouping. `HAVING` filters groups **after** aggregation — a classic interview distinction.
+![Monthly Revenue Trend](screenshots/monthly_sales_trend.png)
+
+### Top Revenue Generating Products
+
+![Top Revenue Products](screenshots/top_revenue_products.png)
+
+### Top Customer Lifetime Value
+
+![Customer Lifetime Value](screenshots/customer_ltv.png)
 
 ---
 
-### Query 3 — Customer Lifetime Value
-**Concept**: `GROUP BY` + Aggregation + Date Functions
-**Pattern**: *"Customer segmentation / RFM analysis"*
+## 💡 Key Insights
 
-```sql
-SELECT Customer_ID, Customer_Name,
-       COUNT(*) AS total_orders, ROUND(SUM(Sales),2) AS lifetime_value,
-       MIN(Order_Date) AS first_order, MAX(Order_Date) AS last_order
-FROM superstore
-GROUP BY Customer_ID, Customer_Name
-ORDER BY lifetime_value DESC LIMIT 10;
-```
-**Result**: Sean Miller — $25,043 LTV | Tamara Chand — $19,052 | Raymond Buch — $15,117
+### Regional Performance
 
----
+* West region generated the highest revenue.
+* South region generated the lowest revenue.
 
-### Query 4 — Monthly Revenue with MoM Growth %
-**Concept**: Window Functions (`LAG`) + Date grouping
-**Pattern**: *"Month-over-month / time-series growth"*
+### Product Analysis
 
-```sql
-SELECT strftime('%Y-%m', Order_Date) AS month,
-       ROUND(SUM(Sales), 2) AS monthly_revenue,
-       LAG(ROUND(SUM(Sales),2)) OVER (ORDER BY strftime('%Y-%m', Order_Date)) AS prev_month,
-       ROUND(100.0*(SUM(Sales) - LAG(SUM(Sales)) OVER (...)) / LAG(SUM(Sales)) OVER (...), 2) AS mom_pct
-FROM superstore
-GROUP BY strftime('%Y-%m', Order_Date);
-```
-**Result**: Nov 2017 — $118,448 (+52.3% MoM) | Dec 2017 — $83,829 (-29.2% MoM)
+* Phones and Chairs generated the highest sales.
+* Technology products consistently outperformed other categories.
+
+### Customer Analysis
+
+* Top customers generated significantly higher revenue than average customers.
+* Loyal customers contributed a large share of total sales.
+
+### Revenue Trends
+
+* Revenue showed steady growth from 2014 to 2017.
+* Strong seasonal spikes were observed during year-end months.
 
 ---
 
-### Query 5 — Top Sub-Category per Category (Ranking)
-**Concept**: `ROW_NUMBER()` + `PARTITION BY` + CTE
-**Pattern**: *"Top N per group / rank within partition"*
+## 🎯 Skills Demonstrated
 
-```sql
-WITH ranked AS (
-  SELECT Category, Sub_Category,
-         ROUND(SUM(Sales),2) AS revenue,
-         ROW_NUMBER() OVER (PARTITION BY Category ORDER BY SUM(Sales) DESC) AS rnk
-  FROM superstore GROUP BY Category, Sub_Category
-)
-SELECT * FROM ranked WHERE rnk = 1;
-```
-**Result**: Technology → Phones ($330K) | Furniture → Chairs ($328K) | Office Supplies → Storage ($224K)
+✔ Data Analysis
 
-> `ROW_NUMBER` = unique rank | `RANK` = ties share rank, skip next | `DENSE_RANK` = ties share rank, no skip
+✔ SQL Query Writing
 
----
+✔ Business Intelligence
 
-### Query 6 (Bonus) — Customer Segmentation
-**Concept**: `CASE WHEN` + Subquery bucketing
-**Pattern**: *"Cohort labelling / user segmentation"*
+✔ KPI Reporting
 
-```sql
-SELECT
-  CASE WHEN order_count=1 THEN '1-One-time'
-       WHEN order_count<=3 THEN '2-Occasional'
-       WHEN order_count<=7 THEN '3-Regular'
-       ELSE '4-Loyal' END AS segment,
-  COUNT(*) AS customers,
-  ROUND(AVG(lifetime_value),2) AS avg_ltv
-FROM (SELECT Customer_ID, COUNT(*) AS order_count, SUM(Sales) AS lifetime_value
-      FROM superstore GROUP BY Customer_ID) t
-GROUP BY segment ORDER BY segment;
-```
-**Result**: Loyal (8+ orders) — 622 customers, $3,410 avg LTV vs One-time — 5 customers, $219 avg LTV
+✔ Revenue Analysis
+
+✔ Customer Analytics
+
+✔ Dashboard Design
+
+✔ Data Visualization
+
+✔ Problem Solving
 
 ---
 
-## Interview Coverage
+## ▶️ How to Run
 
-| Interview Question | Query | Pattern Used |
-|---|---|---|
-| Top N products / best sellers | Q1 | GROUP BY + ORDER BY + LIMIT |
-| Filter groups by threshold | Q2 | HAVING |
-| Customer lifetime value | Q3 | Multi-column GROUP BY + Date |
-| Month-over-month growth | Q4 | LAG() Window Function |
-| Top performer per category | Q5 | ROW_NUMBER + PARTITION BY + CTE |
-| User segmentation / bucketing | Q6 | CASE WHEN + Subquery |
+1. Import the Superstore dataset into SQLite or PostgreSQL.
+2. Open `superstore.sql`.
+3. Execute the queries individually.
+4. Review outputs stored in the `results` folder.
+5. Compare findings with dashboard visualizations.
 
 ---
 
-## How to Run
+## 📈 Project Impact
 
-**Option A — SQLite Online (no install)**
-1. Go to [sqliteonline.com](https://sqliteonline.com)
-2. File > Import CSV → upload `superstore.csv` → table: `superstore`
-3. Paste any query from `superstore.sql` → Run
-
-**Option B — DBeaver (recommended)**
-1. Download [DBeaver Community](https://dbeaver.io/download/)
-2. New SQLite connection → import CSV → run queries
-
-**Option C — PostgreSQL**
-Replace `strftime('%Y-%m', Order_Date)` with `DATE_TRUNC('month', Order_Date::DATE)`
+* Analyzed 9,994 retail transactions.
+* Generated insights from $2.29M in sales data.
+* Built 6 business-focused SQL queries.
+* Created an executive dashboard for KPI tracking.
+* Demonstrated end-to-end data analysis workflow.
 
 ---
 
-## Dataset
-
-Not committed to this repo (publicly available, ~10K rows).
-Download: [Kaggle Superstore Dataset](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final) → place as `data/superstore.csv`
-
----
-
-## Author
+## 👨‍💻 Author
 
 **Garnipudi Nani**
-[LinkedIn](https://www.linkedin.com/in/nani-garnipudi-534817376/) · [GitHub](https://github.com/GarnipudiNani)
+
+GitHub: https://github.com/GarnipudiNani
+
+LinkedIn: https://www.linkedin.com/in/nani-garnipudi-534817376/
 
 ---
 
-## License
-
-MIT License — see [LICENSE](LICENSE)
+## ⭐ If you found this project useful, consider giving it a star.
